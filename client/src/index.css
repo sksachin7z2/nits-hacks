@@ -1,0 +1,97 @@
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+* {
+  box-sizing: border-box;
+}
+i{
+  cursor:pointer;
+}
+body{
+  background-color: rgb(19 101 126 / 14%);
+}
+.green-color {
+  color:rgb(0, 255, 136);
+  size:"5rem"
+}
+.links{
+  cursor:pointer;
+}
+.darkmode{
+  color:white;
+}
+.App{
+  max-width: 300px;
+    margin: 0 auto;
+    border: 1px solid black;
+    padding: 30px;
+    border-radius: 8px;
+}
+input[type=text],input[type=email],input[type=password], select {
+  width: 100%;
+
+ border:none;
+ border:2px solid rgb(1, 46, 25);
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+
+}
+textarea{
+  width: 100%;
+ 
+  
+  border:2px solid rgb(11, 51, 33);
+   border-radius: 4px;
+   box-sizing: border-box;
+   margin-top: 6px;
+   margin-bottom: 16px;
+   resize: vertical;
+   
+}
+input[type=text]:focus{
+  background-color: rgb(121, 160, 245);
+}
+input[type=email]:focus{
+  background-color: rgb(121, 160, 245);
+}
+input[type=password]:focus{
+  background-color: rgb(121, 160, 245);
+}
+textarea:focus{
+  background-color: rgb(121, 160, 245);
+  color:black
+}
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+@media screen and (max-width: 770px) {
+ .query{
+  position: relative;
+  top:12rem
+ }
+}
+.App1{
+ width : 100vw;
+  padding: 10px;
+}
