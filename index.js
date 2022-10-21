@@ -15,9 +15,10 @@ if(process.env.NODE_ENV==='production'){
   app.use(express.static('client/build'))
 }
 //Available routes
-app.use('/api/auth',require('./routes/auth'));
-app.use('/api/notes',require('./routes/notes'))
+app.use('/api/stuauth',require('./routes/studentauth'));
+app.use('/api/mangauth',require('./routes/manageauth'));
+
 
 app.listen(port, () => {
-  console.log(`memobook  listening at http://localhost:${port}`)
+  console.log(`server listening at http://localhost:${port}`)
 })

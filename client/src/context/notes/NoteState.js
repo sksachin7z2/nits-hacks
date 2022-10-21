@@ -2,8 +2,8 @@ import React,{useState} from "react";
 import noteContext from "./NoteContext";
 
 const NoteState=(props)=>{
-    const host="https://memobook.herokuapp.com";
-    // const host="http://localhost:5000";
+    // const host="https://memobook.herokuapp.com";
+    const host="http://localhost:5000";
    const notesInitial=[
    
   ]
