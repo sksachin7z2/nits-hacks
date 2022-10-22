@@ -21,6 +21,23 @@ dashboard about daily wastage generated from that particular hostel nd that data
 dumbed the wastage the user dashboard will get updated and it will get a notification that "His/Her wastage has been dumped succesfully". Now at the 
 year the hostel which gets minimum wastage throughout the year will be rewarded by authority.
 
+UI/UX design and basic Prototype
+
+https://www.figma.com/file/wNx1uhfpAUM4b4ZTRSbhIA/Untitled
+
+
+
+![landing](https://user-images.githubusercontent.com/97694136/197335759-f4b480f3-4639-4e96-931c-49a2980d15af.jpg)
+
+
+![resdashboard](https://user-images.githubusercontent.com/97694136/197335769-edd9e6e4-620d-4031-a795-0124a73d0975.jpg)
+
+![gymkhana](https://user-images.githubusercontent.com/97694136/197335775-e8f87206-57ef-4dd4-8191-66d46225befe.jpg)
+
+![graph](https://user-images.githubusercontent.com/97694136/197335780-59a7c55d-dcfd-4785-ba2a-2edec398e9f0.jpg)
+
+Front End view of Web-App
+
 ![WhatsApp Image 2022-10-22 at 1 04 32 PM](https://user-images.githubusercontent.com/97694136/197332039-789d7d5d-1e0d-4ad0-a9f1-ccc2e6fada58.jpeg)
 
 
