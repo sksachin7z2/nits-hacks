@@ -1,55 +1,117 @@
 
 const express =require('express');
 const router=express.Router();
-const ManageData=require('../models/ManageData')
+const StuData=require('../models/studentData')
+const UserData=require('../models/ManageData')
 
 // route 1 Create a User using :POST "/api/auth/createUser". Doesn't require auth no login requiered
-router.post('/createDataManage',async(req,res)=>{
+const sumArray = (array) => {
+  const newArray = [];
+  array.forEach(sub => {
+     sub.forEach((num, index) => {
+        if(newArray[index]){
+           newArray[index] += num;
+        }else{
+           newArray[index] = num;
+        }
+     });
+  });
+  return newArray;
+}
+router.post('/createDataManageUser',async(req,res)=>{
  
 //check whether the user with this email exists already
 try{
-  const {email,hostel,weight,nature,size,density,moisture,pH,toxicity,biodegradable,recyclable,domestic,composite}=req.body;
-//create user
-if(nature==='biodegradable'){
+    const {email,hostel,weight,nature,size,density,moisture,pH,toxicity,biodegradable,nonBiodegradable,recyclable,domestic}=req.body;
+    //create user
+    // const group=await StuData.aggregate([{$group:{_id:"$hostel"}}]);
+    // const len=group.length;
 
-
-    let userData= await ManageData.create({
-        email:email,
-        hostel:hostel,
+   
+    const studentdata=await StuData.find();
+    const biodegradabler=[];
+    const nonBiodegradabler=[];
+    const recyclabler=[];
+    const domesticr=[];
+    studentdata.forEach((e)=>{
+      biodegradabler.push(e.biodegradable);
+    })
+    studentdata.forEach((e)=>{
+      nonBiodegradabler.push(e.nonBiodegradable);
+    })
+    studentdata.forEach((e)=>{
+      recyclabler.push(e.recyclable);
+    })
+    studentdata.forEach((e)=>{
+      domesticr.push(e.domestic);
+    })
+  const b=sumArray(biodegradabler);
+  const nb=sumArray(nonBiodegradabler);
+  const r=sumArray(recyclabler);
+  const d=sumArray(domesticr);
+  const hostelData=await UserData.find();
+    if(hostelData.length===0)
+    {
+      await UserData.create({
+        hostel:"BH1",
+        biodegradable:b,
+        nonBiodegradable:nb,
+        recyclable:r,
+        domestic:d
       })
-}
-if(nature==='recyclable'){
-    let userData= await ManageData.create({
-        email:email,
-        hostel:hostel,
+      await UserData.create({
+        hostel:"BH2",
+        biodegradable:b,
+        nonBiodegradable:nb,
+        recyclable:r,
+        domestic:d
       })
-}
-if(nature==='domestic'){
-    let userData= await ManageData.create({
-        email:email,
-        hostel:hostel,
+      await UserData.create({
+        hostel:"BH3",
+        biodegradable:b,
+        nonBiodegradable:nb,
+        recyclable:r,
+        domestic:d
       })
-}
-if(nature==='composite'){
-    let userData= await ManageData.create({
-        email:email,
-        hostel:hostel,
+      await UserData.create({
+        hostel:"BH4",
+        biodegradable:b,
+        nonBiodegradable:nb,
+        recyclable:r,
+        domestic:d
       })
-}
-  
-
-  success=true;
-  res.json({success:success,status:"data added succesfully",userData});
-  
+    }
+    else{
+      const updated_data=await UserData.findOneAndUpdate({hostel:'BH1'},{ biodegradable:b,
+        nonBiodegradable:nb,
+        recyclable:r,
+        domestic:d},{new:true});
+    
+      const updated_dat=await UserData.findOneAndUpdate({hostel:'BH2'},{ biodegradable:b,
+        nonBiodegradable:nb,
+        recyclable:r,
+        domestic:d},{new:true});
+    
+      const updated_da=await UserData.findOneAndUpdate({hostel:'BH3'},{ biodegradable:b,
+        nonBiodegradable:nb,
+        recyclable:r,
+        domestic:d},{new:true});
+    
+      const updated_d=await UserData.findOneAndUpdate({hostel:'BH4'},{ biodegradable:b,
+        nonBiodegradable:nb,
+        recyclable:r,
+        domestic:d},{new:true});
+    
+      }
     }catch (error){
       console.error(error.message);
       res.status(500).send("Internal Server Error Occured")
     }
   })
-  router.get("/fetchalluserdata", async (req, res) => {
+  router.get("/fetchallmanageuserdata", async (req, res) => {
     try {
-        const {email}=req.header;
-      const userDatas = await UserData.find({ email: email});
+       
+      const userDatas = await UserData.find();
     
       res.json(userDatas);
     } catch (error) {
@@ -58,54 +120,7 @@ if(nature==='composite'){
     }
   });
 
-  router.post('/updateDataUser:id',async(req,res)=>{
  
-    const {email,nature,weight,size,density,moisture,pH,toxicity}=req.body;
-      try {
-        //create a newNote object
-        const newData = {};
-        if (email) {
-          newData.email = email;
-        }
-        if (nature) {
-          newData.nature = nature;
-        }
-        if (weight) {
-          newData.weight = weight;
-        }
-        if (size) {
-          newData.size= size;
-        }
-        if (density) {
-          newData.density= density;
-        }
-        if (moisture) {
-          newData.moisture= moisture;
-        }
-        if (pH) {
-          newData.pH= pH;
-        }
-        if (toxicity) {
-          newData.toxicity= toxicity;
-        }
-    
-        //find the note to be updated and update it
-        let userData = await UserData.findById(req.params.id);
-        if (!userData) {
-          return res.status(404).send("Not found");
-        }
-        userData= await UserData.findByIdAndUpdate(
-          req.params.id,
-          { $set: newData },
-          { new: true }
-        );
-        res.json({ userData });
-      } catch (error) {
-        console.error(error.message);
-        res.status(500).send("Internal Server Error Occured");
-      }
-    
-      })
      
       //Route 4 to delte a note in User detail using :DELETE: "/api/notes/deletenote".login requiered
       router.delete("/deleteUserData/:id", async (req, res) => {

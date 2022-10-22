@@ -3,6 +3,9 @@
     padding:0;
     text-decoration: none;
 }
+.rounded-full{
+    border-radius:200px
+}
 .container{
     display:flex;
 }

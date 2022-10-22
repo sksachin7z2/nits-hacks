@@ -49,19 +49,19 @@ const { Schema } = mongoose;
 //     }
 biodegradable:{
     type:Array,
-    default:Array(365).fill(0),
+    default:[],
 },
-composite:{
+nonBiodegradable:{
     type:Array,
-    default:Array(365).fill(0),
+    default:[],
 },
-recycle:{
+recyclable:{
     type:Array,
-    default:Array(365).fill(0),
+    default:[],
 },
 domestic:{
     type:Array,
-    default:Array(365).fill(0)
+    default:[]
 }
   },{ timestamps: true});
   const Manage=mongoose.model('managedata',ManageDataSchema);

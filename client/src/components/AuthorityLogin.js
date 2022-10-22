@@ -2,8 +2,10 @@ import React,{useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import { signinwithgoogle } from '../firebase-config'
 import './login.css'
+import Cookies from 'js-cookie'
 // import Spinner from './Spinner'
 const ResLogin = (props) => {
+    
         const [credentials, setcredentials] = useState({email:"",password:""})
         let navigate=useNavigate();
         // const [loading, setLoading] = useState(false);
@@ -60,7 +62,7 @@ const ResLogin = (props) => {
           {/* {loading&&<Spinner/>} */}
           <br />
           <div className='text-center'>
-            <button onClick={()=>{signinwithgoogle()}} className='btn btn-danger'>Login with google</button>
+            <button onClick={()=>{signinwithgoogle('admin');Cookies.set('current','admin')}} className='btn btn-danger'>Login with google</button>
           </div>
           <hr />
            <form onSubmit={handleSubmit}>

@@ -1,9 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import { signinwithgoogle } from '../firebase-config'
 import './login.css'
+import Cookies from 'js-cookie'
 // import Spinner from './Spinner'
 const ResLogin = (props) => {
+  
         const [credentials, setcredentials] = useState({email:"",password:""})
         let navigate=useNavigate();
         // const [loading, setLoading] = useState(false);
@@ -53,14 +55,21 @@ const ResLogin = (props) => {
         setAlert(null)
       },2000);
     }
+    useEffect(() => {
+    document.body.style.backgroundColor="rgb(2 255 107 / 18%)";
+    return ()=>{
+      document.body.style.backgroundColor="white";
+    }
+    }, [])
+    
     return (
       <>
-      <div className="app2">
+      <div className="app2 bg-white  ">
           <h2 className='text-center'>Sign In</h2>
           {/* {loading&&<Spinner/>} */}
           <br />
           <div className='text-center'>
-            <button onClick={()=>{signinwithgoogle()}} className='btn btn-danger'>Login with google</button>
+            <button onClick={()=>{signinwithgoogle();Cookies.set('current','student');}} className='btn btn-danger'>Login with google</button>
           </div>
           <hr />
            <form onSubmit={handleSubmit}>

@@ -50,11 +50,11 @@ const { Schema } = mongoose;
      type:Array,
      default:[],
  },
- composite:{
+nonBiodegradable:{
      type:Array,
      default:[],
  },
- recycle:{
+ recyclable:{
      type:Array,
      default:[],
  },

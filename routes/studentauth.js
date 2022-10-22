@@ -2,7 +2,7 @@
 const express =require('express');
 const router=express.Router();
 const User=require('../models/Student')
-var fetchuser = require('../middleware/fetchuser');
+
 
 // route 1 Create a User using :POST "/api/auth/createUser". Doesn't require auth no login requiered
 router.post('/createUser',async(req,res)=>{

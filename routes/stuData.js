@@ -5,10 +5,9 @@ const UserData=require('../models/studentData')
 
 // route 1 Create a User using :POST "/api/auth/createUser". Doesn't require auth no login requiered
 router.post('/createDataUser',async(req,res)=>{
- 
 //check whether the user with this email exists already
 try{
-    const {email,hostel,weight,nature,size,density,moisture,pH,toxicity,biodegradable,recyclable,domestic,composite}=req.body;
+    const {email,hostel,weight,nature,size,density,moisture,pH,toxicity,biodegradable,recyclable,domestic,nonBiodegradable}=req.body;
     //create user
     const studentdata=await UserData.find({email:email});
     if(!studentdata){
@@ -27,7 +26,7 @@ try{
                 hostel:hostel,
                 biodegradable:arr1,
                 recyclable:arr,
-                composite:arr,
+                nonBiodegradable:arr,
                 domestic:arr
               })
         }
@@ -35,9 +34,19 @@ try{
             let userData= await UserData.create({
                 email:email,
                 hostel:hostel,
-                biodegradable:arr1,
+                biodegradable:arr,
+                recyclable:arr1,
+                nonBiodegradable:arr,
+                domestic:arr
+              })
+        }
+        if(nature==='nonBiodegradable'){
+            let userData= await UserData.create({
+                email:email,
+                hostel:hostel,
+                biodegradable:arr,
                 recyclable:arr,
-                composite:arr,
+                nonBiodegradable:arr1,
                 domestic:arr
               })
         }
@@ -45,27 +54,31 @@ try{
             let userData= await UserData.create({
                 email:email,
                 hostel:hostel,
-                biodegradable:arr1,
+                biodegradable:arr,
                 recyclable:arr,
-                composite:arr,
-                domestic:arr
+                nonBiodegradable:arr,
+                domestic:arr1
               })
         }
-        if(nature==='composite'){
-            let userData= await UserData.create({
-                email:email,
-                hostel:hostel,
-                biodegradable:arr1,
-                recyclable:arr,
-                composite:arr,
-                domestic:arr
-              })
-        }
+        res.json({status:"succesfukky created"});
     }
-    
+    else{
+        var now = new Date();
+        var start = new Date(now.getFullYear(), 0, 0);
+        var diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
+        var oneDay = 1000 * 60 * 60 * 24;
+        var day = Math.floor(diff / oneDay);
+        console.log('Day of year: ' + day);
+        let arr1=studentdata?.nature;
+        arr1[now]+=weight;
+
+        const updated_data=await UserData.findOneAndUpdate({email:email},{nature:arr1},{new:true});
+        res.json({status:"succesfully updated",updated:updated_data});
+      
+    }
 
   success=true;
-  res.json({success:success,status:"data added succesfully",userData});
+ 
   
     }catch (error){
       console.error(error.message);
@@ -84,57 +97,7 @@ try{
     }
   });
 
-  router.post('/updateDataUser:id',async(req,res)=>{
  
-    const {email,nature,weight,size,density,moisture,pH,toxicity}=req.body;
-      try {
-        //create a newNote object
-        const newData = {};
-        if (email) {
-          newData.email = email;
-        }
-        if (nature) {
-          newData.nature = nature;
-        }
-        if (weight) {
-          newData.weight = weight;
-        }
-        if (size) {
-          newData.size= size;
-        }
-        if (density) {
-          newData.density= density;
-        }
-        if (moisture) {
-          newData.moisture= moisture;
-        }
-        if (pH) {
-          newData.pH= pH;
-        }
-        if (toxicity) {
-          newData.toxicity= toxicity;
-        }
-        if (chartData) {
-            newData.chartData = weight;
-        }
-    
-        //find the note to be updated and update it
-        let userData = await UserData.findById(req.params.id);
-        if (!userData) {
-          return res.status(404).send("Not found");
-        }
-        userData= await UserData.findByIdAndUpdate(
-          req.params.id,
-          { $set: newData },
-          { new: true }
-        );
-        res.json({ userData });
-      } catch (error) {
-        console.error(error.message);
-        res.status(500).send("Internal Server Error Occured");
-      }
-    
-      })
      
       //Route 4 to delte a note in User detail using :DELETE: "/api/notes/deletenote".login requiered
       router.delete("/deleteUserData/:id", async (req, res) => {

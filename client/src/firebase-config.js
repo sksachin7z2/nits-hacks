@@ -19,20 +19,29 @@ const app = initializeApp(firebaseConfig);
 export let auth = getAuth(app);
 export const provider=new GoogleAuthProvider();
 
-export const signinwithgoogle=()=>{
+export const signinwithgoogle=(arg)=>{
 
 
 signInWithPopup(auth,provider).then((result)=>{
   const email=result.user.email;
   const profilepic=result.user.photoURL;
   const token=result.user.uid;
+  const name=result.user.displayName
   Cookies.set('token1', token)
   Cookies.set('dp', profilepic)
   Cookies.set('email', email)
+  Cookies.set('name', name)
   // localStorage.setItem('token1',token);
   // localStorage.setItem('dp',profilepic);
   // localStorage.setItem('email',email);
- 
+ if(arg==='admin'){
+ Cookies.set('current','admin');
+ window.location.href='/authorityDashboard'
+ }
+ else{
+ Cookies.set('current','student')
+ window.location.href='/studentDashboard'
+ }
 
 }).catch((error)=>{
   alert(error)
