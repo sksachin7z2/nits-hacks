@@ -2,6 +2,7 @@ import React from 'react'
 // import '../home.css'
 import main from './garbage-recycle.svg'
 import Navbar from './Navbar'
+import{ Link} from 'react-router-dom'
 function Home() {
   return (
     <div>
@@ -20,7 +21,7 @@ function Home() {
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <form action="sachin">
               <div className=" button">
-                       <button className='btn btn-success'>Login</button>
+                       <Link to='/studentlogin'><button className='btn btn-success'>Login</button></Link>
                     </div>
             </form>
              
@@ -31,7 +32,7 @@ function Home() {
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <form action="">
             <div className=" button">
-                        <button className='btn btn-success'>Login</button>
+                       <Link to='/authoritylogin'> <button className='btn btn-success'>Login</button></Link>
                     </div>
                 </form>
           </div>

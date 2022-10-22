@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
 import {useNavigate} from 'react-router-dom'
-import { signinwithgoogle } from '../firebase-config'
-import './login.css'
+
+
 // import Spinner from './Spinner'
-const ResLogin = (props) => {
+const ResSignup = (props) => {
         const [credentials, setcredentials] = useState({email:"",password:""})
         let navigate=useNavigate();
         // const [loading, setLoading] = useState(false);
@@ -58,11 +58,6 @@ const ResLogin = (props) => {
       <div className="app2">
           <h2 className='text-center'>Sign In</h2>
           {/* {loading&&<Spinner/>} */}
-          <br />
-          <div className='text-center'>
-            <button onClick={()=>{signinwithgoogle()}} className='btn btn-danger'>Login with google</button>
-          </div>
-          <hr />
            <form onSubmit={handleSubmit}>
   <div className="form-group my-3">
     <label className='my-2 bold' htmlFor="email">Email address</label>
@@ -82,4 +77,4 @@ const ResLogin = (props) => {
     )
 }
 
-export default ResLogin
+export default ResSignup

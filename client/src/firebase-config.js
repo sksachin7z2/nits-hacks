@@ -33,7 +33,7 @@ signInWithPopup(auth,provider).then((result)=>{
   // localStorage.setItem('dp',profilepic);
   // localStorage.setItem('email',email);
  
-  window.location.reload();
+
 }).catch((error)=>{
   alert(error)
 })

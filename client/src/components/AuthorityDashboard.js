@@ -11,12 +11,13 @@ import {
     FaRecycle,
     FaBiohazard
 } from "react-icons/fa";
+import graph from './Asset.png'
 import { GiBrandyBottle } from 'react-icons/gi'
 import { BsApple } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom';
 
 
-const Sidebar = ({ children }) => {
+const Sideba = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
     const menuItem = [
@@ -53,7 +54,7 @@ const Sidebar = ({ children }) => {
     ]
     return (
         <div className='row'>
-            <div style={{ width: isOpen ? "200px" : "100px" }} className="sidebar col-md-2">
+            <div style={{ width: isOpen ? "200px" : "100px" }} className="sidebar col-md-2 ">
                 <div className="top_section text-center">
                     <h1 style={{ display: isOpen ? "block" : "none" }} className="logo">Logo</h1>
                     <div style={{ marginLeft: isOpen ? "50px" : "0px" }} className="bars">
@@ -78,12 +79,11 @@ const Sidebar = ({ children }) => {
 
 
             <div className='col-md-10 p-4'>
-                <h2>Hi, name</h2>
+                <h2>Hi, Admin</h2>
                 <div className="p-4 rounded-md border ">
-                    <h4>Select type of waste</h4>
-                    <p>You can submit the waste you generated</p>
+                    <h4>Hostel Activities</h4>
                     <div className="row p-3">
-                        <div className="col-md-3">
+                        <div className="col-md-3 shadow-sm mx-3">
                             <div className="d-flex">
                                 <button className="p-2 border btn">
 
@@ -96,7 +96,7 @@ const Sidebar = ({ children }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-md-3 shadow-sm">
                             <div className="d-flex">
                                 <button className="p-2 border btn">
 
@@ -109,7 +109,7 @@ const Sidebar = ({ children }) => {
                         </div>
                     </div>
                     <div className="row p-3">
-                        <div className="col-md-3">
+                        <div className="col-md-3 shadow-sm mx-3">
                             <div className='d-flex p-2'>
                                 <button className="p-2 border btn">
 
@@ -121,7 +121,7 @@ const Sidebar = ({ children }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-md-3 shadow-sm">
                             <div className="d-flex">
                                 <button className='p-2 border btn'><FaBiohazard /></button>
 
@@ -133,12 +133,14 @@ const Sidebar = ({ children }) => {
                         </div>
                     </div>
                 </div>
-                <div className='col-md-10 p-4'>
+                <div className='col-md-10 p-4 m-auto'>
               
-                <div className="p-4 rounded-md  ">
-                    <h4>Your Submission</h4>
-              <p>No Submission till now</p>
+                <div className="p-4 rounded-md border w-100">
+                    <h4>Overall</h4>
                    
+            <div >
+              <img className='w-100' src={graph} alt="" srcset="" />
+            </div>
                 </div>
             </div>
             </div>
@@ -149,4 +151,4 @@ const Sidebar = ({ children }) => {
     );
 };
 
-export default Sidebar;
+export default Sideba;

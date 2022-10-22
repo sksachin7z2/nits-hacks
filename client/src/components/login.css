@@ -1,0 +1,65 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Be+Vietnam+Pro:wght@200&family=Lobster&family=Source+Code+Pro:ital@1&display=swap');
+
+
+.app1{
+ 
+  border: 2px solid black;
+  border-radius: 1rem;
+  margin: 0 auto;
+  padding: 2rem;
+  max-width: 343px;
+  /* height: 80vh; */
+  margin-bottom: 151px;
+  
+}
+hr{
+  
+  color: black
+
+  
+}
+btnnob{
+  border:none;
+
+}
+.app2{
+  
+
+  border: 2px solid black;
+  border-radius: 1rem;
+  margin: 6rem auto;
+  padding: 2rem;
+  max-width: 343px;
+  /* height: 80vh; */
+  margin-bottom: 148px;
+}
+
+.App{
+  max-width: 90vw;
+     margin: 0 auto;
+}
+
+.bold{
+  font-weight: bold;
+}
+.flexCenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+@media screen and (max-width: 527px){
+  .mainp{
+    width:62%
+  }
+  .app1{
+    border:none
+  }
+  .app2{
+    border:none
+  }
+}
